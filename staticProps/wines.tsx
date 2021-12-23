@@ -24,6 +24,6 @@ const wines: Array<Wine> = [
     colour: "bg-yellow-500",
     value: 1000,
   },
-].sort((a, b) => a.value - b.value);
+].sort((a, b) => b.value - a.value);
 
 export default wines;
