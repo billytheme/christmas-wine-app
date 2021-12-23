@@ -99,7 +99,9 @@ export default function Results({ wines, myVote }: ResultsProps) {
                         0 / (totalVotes || 1))}
                   </p>
                   <div
-                    className={" absolute top-0 left-0 bottom-0 w-full z-0"}
+                    className={
+                      "bg-grey-500 absolute top-0 left-0 bottom-0 w-full z-0"
+                    }
                     style={{
                       width:
                         (
