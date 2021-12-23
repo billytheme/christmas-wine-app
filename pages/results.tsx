@@ -83,7 +83,7 @@ export default function Results({ wines, myVote }: ResultsProps) {
             key={wine.name}
           >
             <div className="w-1/2 h-full">
-              <Card className={"m-0 " + wine.colour}>
+              <Card className={"m-0 "}>
                 <p className="text-center">
                   {"Position " + (posIndex + 1).toString()}
                 </p>
@@ -99,9 +99,7 @@ export default function Results({ wines, myVote }: ResultsProps) {
                         0 / (totalVotes || 1))}
                   </p>
                   <div
-                    className={
-                      wine.colour + " absolute top-0 left-0 bottom-0 w-full z-0"
-                    }
+                    className={" absolute top-0 left-0 bottom-0 w-full z-0"}
                     style={{
                       width:
                         (
