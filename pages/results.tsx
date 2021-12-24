@@ -13,7 +13,7 @@ interface ResultsProps {
 
 interface Vote {
   user: string;
-  vote: Array<Wine>;
+  vote: Array<Wine> | null;
 }
 
 export const getServerSideProps: GetServerSideProps<ResultsProps> = async (
@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps<ResultsProps> = async (
 
   return {
     props: {
-      myVote: myVote.vote,
+      myVote: myVote?.vote || null,
       wines: wines,
     },
   };
@@ -44,9 +44,11 @@ export default function Results({ wines, myVote }: ResultsProps) {
   const totalVotes = votes?.length;
 
   const voteTotals = wines.map((_, index) => {
-    return wines.map((wine) => {
+    return wines?.map((wine) => {
       return votes?.filter(
-        (vote: Vote) => JSON.stringify(vote.vote[index]) == JSON.stringify(wine)
+        (vote: Vote) =>
+          JSON.stringify(vote.vote !== null ? vote.vote[index] : null) ==
+          JSON.stringify(wine)
       ).length;
     });
   });
@@ -56,9 +58,9 @@ export default function Results({ wines, myVote }: ResultsProps) {
       <div className="flex justify-center">
         <div className="flex flex-col items-stretch max-w-min w-1/2">
           <p className="font-bold text-center">Your Ranking</p>
-          {myVote.map((wine) => (
+          {myVote?.map((wine) => (
             <div className="p-1 min-w-max flex-1" key={wine.name}>
-              <Card className={"m-0 " + wine.colour}>
+              <Card className={"m-0 "}>
                 <p className="text-center">{wine.name}</p>
               </Card>
             </div>
@@ -68,7 +70,7 @@ export default function Results({ wines, myVote }: ResultsProps) {
           <p className="font-bold text-center">Actual Ranking</p>
           {wines.map((wine) => (
             <div className="p-1 min-w-max flex-1" key={wine.name}>
-              <Card className={"m-0 " + wine.colour}>
+              <Card className={"m-0 "}>
                 <p className="text-center">{wine.name}</p>
               </Card>
             </div>

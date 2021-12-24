@@ -18,3 +18,9 @@ export async function updateOneVote(db: string, container: string, vote: Documen
   const client = await clientPromise
   const res = await client.db(db).collection(container).updateOne({user: vote.user}, {"$set": vote}, {upsert: true})
 }
+
+export async function clearContainer(db: string, container: string) {
+  const client = await clientPromise
+  const res = await client.db(db).collection(container).deleteMany({})
+  return res
+}
