@@ -57,21 +57,11 @@ export default function Results({ wines, myVote }: ResultsProps) {
     <div>
       <div className="flex justify-center">
         <div className="flex flex-col items-stretch max-w-min w-1/2">
-          <p className="font-bold text-center">Your Ranking</p>
+          <p className="font-bold text-center">Your Order</p>
           {myVote?.map((wine) => (
             <div className="p-1 min-w-max flex-1" key={wine.name}>
               <Card className={"m-0 "}>
-                <p className="text-center">{wine.name}</p>
-              </Card>
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-col items-stretch max-w-min w-1/2">
-          <p className="font-bold text-center">Actual Ranking</p>
-          {wines.map((wine) => (
-            <div className="p-1 min-w-max flex-1" key={wine.name}>
-              <Card className={"m-0 "}>
-                <p className="text-center">{wine.name}</p>
+                <p className="text-center">{wine.codeName}</p>
               </Card>
             </div>
           ))}
@@ -95,10 +85,11 @@ export default function Results({ wines, myVote }: ResultsProps) {
               {wines.map((wine, wineIndex) => (
                 <div className="relative w-full h-1/3" key={wine.name}>
                   <p className="absolute top-0 left-0 right-0 bottom-0 z-10">
-                    {wine.name +
+                    {wine.codeName +
                       ": " +
-                      (voteTotals[posIndex][wineIndex] ||
-                        0 / (totalVotes || 1))}
+                      (voteTotals[posIndex][wineIndex] || 0) +
+                      " vote" +
+                      (voteTotals[posIndex][wineIndex] !== 1 ? "s" : "")}
                   </p>
                   <div
                     className="bg-gray-300 absolute top-0 left-0 bottom-0 w-full z-0"
