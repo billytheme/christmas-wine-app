@@ -59,7 +59,7 @@ export default function Results({ wines, myVote }: ResultsProps) {
         <div className="flex flex-col items-stretch max-w-min w-1/2">
           <p className="font-bold text-center">Your Order</p>
           {myVote?.map((wine) => (
-            <div className="p-1 min-w-max flex-1" key={wine.name}>
+            <div className="p-1 min-w-max flex-1" key={wine.codeName}>
               <Card className={"m-0 "}>
                 <p className="text-center">{wine.codeName}</p>
               </Card>
@@ -72,7 +72,7 @@ export default function Results({ wines, myVote }: ResultsProps) {
         {wines.map((wine, posIndex) => (
           <div
             className="flex items-stretch mx-auto w-80 gap-1"
-            key={wine.name}
+            key={wine.codeName}
           >
             <div className="w-1/2 h-full">
               <Card className={"m-0 "}>
@@ -83,7 +83,7 @@ export default function Results({ wines, myVote }: ResultsProps) {
             </div>
             <div className="w-1/2">
               {wines.map((wine, wineIndex) => (
-                <div className="relative w-full h-1/3" key={wine.name}>
+                <div className="relative w-full h-1/3" key={wine.codeName}>
                   <p className="absolute top-0 left-0 right-0 bottom-0 z-10">
                     {wine.codeName +
                       ": " +
